@@ -22,6 +22,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin-left: 5%;
   /*background: #1a1e23;*/
+  background-image: url("svgs/bg.svg");
 }
 
 
