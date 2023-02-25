@@ -39,27 +39,38 @@
 
     // set up colour scale
     const fillColour = d3.scaleOrdinal()
-        .domain(["2", "4", "6", "8", "10"])
+        .domain(["4", "6", "8", "10"])
         //.range(['#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#43a2ca','#0868ac']);
         //.range(['#ffffcc','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84']);
-        .range(['#fff7fb','#ece2f0','#d0d1e6','#a6bddb','#67a9cf','#3690c0','#02818a','#016c59','#014636']);
+        //.range(['#fff7fb','#ece2f0','#d0d1e6','#a6bddb','#67a9cf','#3690c0','#02818a','#016c59','#014636']);
+        //.range(['#D2DAFF','#FFE3E1','#FFD1D1','#AAC4FF','#CDF0EA']);
+        //.range(['#C4DFAA','#CDF0EA','#C2DED1','#DAE5D0','#D3DEDC']);
+        .range(['#ffc090','#d7e9b9','#a6bb8d','#e5d1fa'])
 
+    const fillColour2 = d3.scaleOrdinal()
+        .domain(["3", "4"])
+        //.range(['#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#43a2ca','#0868ac']);
+        //.range(['#ffffcc','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84']);
+        //.range(['#fff7fb','#ece2f0','#d0d1e6','#a6bddb','#67a9cf','#3690c0','#02818a','#016c59','#014636']);
+        //.range(['#D2DAFF','#FFE3E1','#FFD1D1','#AAC4FF','#CDF0EA']);
+        .range(['#25316D', '#06283D'])
+    
     var languages = [
         {id:"Python", value: 10},
         {id:"C++", value: 4},
         {id:"R", value: 4},
-        {id:"Powershell", value: 5},
+        {id:"Bash", value: 5},
         {id:"SQL", value: 8},
         {id:"NodeJS", value: 8},
-        {id:"Erlang", value: 6}
+        {id:"Erlang", value: 4}
     ];
     var tools = [
         {id:"Docker", value: 8},
-        {id:"Terraform", value: 9},
+        {id:"Terraform", value: 10},
         {id:"Ansible", value: 6},
         {id:"Kubernetes", value: 8},
-        {id:"Grafana", value: 8},
-        {id:"Prometheus", value: 8},
+        {id:"Grafana", value: 10},
+        {id:"Prometheus", value: 10},
         {id:"Matlab", value: 6},
         {id:"Azure", value: 8}
     ];
@@ -69,13 +80,13 @@
         {id:"ReactJS", value: 6},
         {id:"D3", value: 8},
         {id:"MongoDB", value: 6},
-        {id:"Neo4j", value: 6}
+        {id:"Neo4j", value: 8}
     ];
     var areas = [
-        {id:"Back-end", value: 8},
-        {id:"Front-end", value: 6},
-        {id:"Reliability", value: 8},
-        {id:"Dev-Ops", value: 6}
+        {id:"Back-end", value: 4},
+        {id:"Front-end", value: 3},
+        {id:"Reliability", value: 4},
+        {id:"Dev-Ops", value: 3}
     ];
     function getExp(){
         console.log("Exp");
@@ -161,7 +172,6 @@
                 .style('text-anchor', 'middle')
                 .style('font-size', font_size)
                 .style('stroke',"#5A5A5A")
-                .style('font-family',"poppins-thin")
                 .attr("id","skillsDesc")
                 .text(d => d.id)
             // set simulation's nodes to our newly created nodes array
@@ -198,15 +208,26 @@
                 .style("rx","5px")
                 .attr("x", xstart)
                 .attr("y", function(d){return yScale(d.id)})
-                .attr("width", function(d){return xScale(d.value)})
+                .attr("width", function(d){return xScale(2*d.value)})
                 .attr("height", yScale.bandwidth())
-                .attr("fill", function(d){return fillColour(d.value)});
+                .attr("fill", function(d){return fillColour2(d.value)});
+
+            g.selectAll(".bar2")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) {return xstart+xScale(2*d.value)-1})
+                .attr("y", function(d){return yScale(d.id)+yScale.bandwidth()/2.1})
+                .attr("width", barwidth)
+                .attr("height", barheight/100)
+                .attr("fill", '#0f0e0e');
 
             g.selectAll(".text")
                 .data(data)
                 .enter()
                 .append("text")
-                .attr("x",xstart-50)
+                .attr("x",xstart-30)
                 .attr("text-anchor","end")
                 .attr("y",function(d){return yScale(d.id);})
                 .attr("dy",yScale.bandwidth())
@@ -241,9 +262,9 @@
             </div>
             <div class="child-container1" id="anim" style="width:50%; display: flex; justify-content: center;">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="150%" height="70%" viewBox="0 0 2048.000000 1024.000000"
+                width="150%" height="70%" viewBox="300 0 2048.000000 1024.000000"
                 preserveAspectRatio="xMidYMid meet">               
-               <g transform="translate(512.000000,2048.000000) scale(0.100000,-0.100000)"
+               <g transform="translate(512.000000,2048.000000) scale(0.1200000,-0.100000)"
                fill="#000000" stroke="none">
                <path d="M8062 15172 c-11 -9 -84 -154 -161 -322 l-140 -305 -58 -33 c-107
                 -62 -216 -146 -334 -260 l-118 -113 -2473 270 c-1360 149 -2482 272 -2493 274
