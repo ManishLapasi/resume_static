@@ -219,12 +219,6 @@
         chart(frameWorks, { x: 7*width/8, y: y_center }, svg1)
         barchart(areas, 600, 150, 250, svg2);
     }
-    function makeAnim(){
-        let svg3 = d3.select("#anim")
-            .append("svg")
-            .attr("id","anim")
-            .attr("style","width:100%;height:100%")
-    }
 </script>
 <body onload="getExp()">
     <div class="menubar">
@@ -234,10 +228,10 @@
             <li class="menu"><a href="#Experience">Experience</a></li>
         </ul>
     </div>
-    <div id="Home" class="summary" style="height: 70%;">
-        <div class="parent-container1">
-            <div class="child-container1" style="width: 40%;">
-                <p style="margin-top: 30%; margin-left: 8%;  font-size: 30px;">Hi, I'm Manikandan Lapasi.</p>
+    <div id="Home" class="summary" >
+        <div class="parent-container1" style="height: 85%;">
+            <div class="child-container1" style="width: 40%; height: 100%;">
+                <p style="margin-top: 30%; margin-left: 8%;  font-size: 35px;">Hi, I'm Manikandan Lapasi.</p>
                 <p style="margin-left: 8%;  font-size: 30px;">I write code.</p>
                 <div style="margin-left: 5%;">
                 <a href="http://github.com/manishlapasi" class="fa fa-github fa-3x"></a>
@@ -247,9 +241,8 @@
             </div>
             <div class="child-container1" id="anim" style="width:55%; display: flex; justify-content: center;">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="100%" height="100%" viewBox="0 0 2048.000000 2048.000000"
-                preserveAspectRatio="xMidYMid meet">
-               
+                width="150%" height="70%" viewBox="0 0 2048.000000 1024.000000"
+                preserveAspectRatio="xMidYMid meet">               
                <g transform="translate(0.000000,2048.000000) scale(0.100000,-0.100000)"
                fill="#000000" stroke="none">
                <path d="M8062 15172 c-11 -9 -84 -154 -161 -322 l-140 -305 -58 -33 c-107
@@ -328,10 +321,17 @@
                 -147 61 -184 144 -92 210 86 588 359 759 33 21 42 32 40 49 -5 36 -46 32 -103
                 -9z"/>
                </g>
-               </svg></div>
+               </svg>
+            </div>
+        </div>
+        <div class="parent-container1">
+            <div class="child-container1" style="width: 70%; margin-left: 3.2%; margin-top: -5%;">
+            I'm currently pursuing my Master's in CS at Georgia Tech, and I'm expecting to graduate by Spring 2024. I'm quite interested in SDE/DevOps/SRE roles, so if you've got an opening on your team, I'd be happy to get in touch!
+            </div>
         </div>
     </div>
-    <h1 id="Skills">Tech I've worked on</h1>
+    <div>
+    <h1 id="Skills" style="margin-top: 5%;">Tech I've worked on</h1>
     <div class="parent-container1">
         <div class="child-container1" style="width: 35%;">
             My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
@@ -340,6 +340,7 @@
         </div>
     </div>
     <div class="child-container1" style="width: 100%" id="skills1"></div>
+    </div>
     <br>
     <h1 id="Experience">Teams I've worked with</h1>
     <div class="row1-container">
