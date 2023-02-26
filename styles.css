@@ -2,8 +2,8 @@
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("./svgs/bg.svg");
-  --bg-url-dark: url("./svgs/bg_dark.svg");
+  --bg-url: url("../svgs/bg.svg");
+  --bg-url-dark: url("../svgs/bg_dark.svg");
   --text-color: #333;
   --switch-on-color: #444352;
   --switch-off-color: #ccc;
@@ -14,8 +14,8 @@
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("./svgs/bg.svg");
-  --bg-url-dark: url("./svgs/bg_dark.svg");
+  --bg-url: url("../svgs/bg.svg");
+  --bg-url-dark: url("../svgs/bg_dark.svg");
   --text-color: #efefef;
   --toggler-color: #444352;
   --switch-on-color: #fff;
