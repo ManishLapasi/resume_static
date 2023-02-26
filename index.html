@@ -264,7 +264,9 @@
                 .attr("height", barheight/100)
                 .attr("fill", '#0f0e0e');
 
-            g.selectAll(".text")
+            var g2 = g.append("g").attr("id","bartext");
+            
+            g2.selectAll(".text")
                 .data(data)
                 .enter()
                 .append("text")
@@ -272,8 +274,6 @@
                 .attr("text-anchor","end")
                 .attr("y",function(d){return yScale(d.id);})
                 .attr("dy",yScale.bandwidth())
-                .style("stroke","#000000")
-                .style("fill","#E2E2E2")
                 .text(function(d){return d.id;});
         }
         chart(languages, { x: width/8, y: y_center }, svg1)
@@ -283,14 +283,21 @@
     }
 
     
-
+    var prevScrollpos = window.pageYOffset;
     function myFunction() {
+        var currScrollpos = window.pageYOffset;
         var $$header = document.querySelector(".js-header");
         if (window.pageYOffset) {
             $$header.classList.add("is-active");
         } else {
             $$header.classList.remove("is-active");
         }
+        if (prevScrollpos > currScrollpos) {
+            $$header.style.top = "0";
+        } else {
+            $$header.style.top = "-50px";
+        }
+        prevScrollpos = currScrollpos;
     }
 
     // When the user scrolls the page, execute myFunction
@@ -323,6 +330,7 @@
                 btns[i].classList.add("navigation__link--is-active")
                 }
             }
+            document.getElementById("bartext").setAttribute("fill","#000000");
         }else{
             document.getElementById("bongocat").setAttribute("fill","#ffffff");
             document.body.classList.remove("background");
@@ -334,6 +342,7 @@
                 btns[i].classList.add("navigation__link--is-active-dark")
                 }
             }
+            document.getElementById("bartext").setAttribute("fill","#ffffff");
         }
         ele.setAttribute("value",value);
     }
@@ -345,7 +354,7 @@
             <nav class="navigation">
                 <ul class="navigation__list navigation__list--inline" style="margin-left:40%" id="menuItems">
                     <li class="navigation_item"><a href="#" class="navigation__link navigation__link--is-active" onclick="activeEle(this)">About</a></li>
-                    <li class="navigation_item"><a href="#Skills" class="navigation__link" onclick="activeEle(this)">Skills</a></li>
+                    <li class="navigation_item"><a href="#Skills" class="navigation__link" onclick="activeEle(this); getExp()">Skills</a></li>
                     <li class="navigation_item"><a href="#Experience" class="navigation__link" onclick="activeEle(this)">Experience</a></li>
                     <li class="navigation_item"><a><label class="switch">
                         <input id="toggler" type="checkbox" value="light" onclick="toggleMode(this)">

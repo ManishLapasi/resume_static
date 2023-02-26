@@ -2,8 +2,8 @@
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("../svgs/bg.svg");
-  --bg-url-dark: url("../svgs/bg_dark.svg");
+  --bg-url: url("./svgs/bg.svg");
+  --bg-url-dark: url("./svgs/bg_dark.svg");
   --text-color: #333;
   --switch-on-color: #444352;
   --switch-off-color: #ccc;
@@ -14,8 +14,8 @@
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("../svgs/bg.svg");
-  --bg-url-dark: url("../svgs/bg_dark.svg");
+  --bg-url: url("./svgs/bg.svg");
+  --bg-url-dark: url("./svgs/bg_dark.svg");
   --text-color: #efefef;
   --toggler-color: #444352;
   --switch-on-color: #fff;
@@ -41,13 +41,13 @@ body {
 .background {
   background-image: var(--bg-url);
   color: #333;
-  transition: background 500ms;
+  transition: background-image 1s ease-in;
 }
 
 .background-dark {
   background-image: var(--bg-url-dark);
   color: #efefef;
-  transition: background 500ms;
+  transition: background-image 1s ease-in;
 }
 
 /* Menu */
@@ -58,6 +58,7 @@ body {
   backdrop-filter: blur(20px);
   transform: perspective(500px);
   transform-style: preserve-3d;
+  transition: top 0.5s;
 }
 
 .navbar::after {
@@ -256,11 +257,12 @@ body {
   -webkit-transition: .4s;
   transition: .4s;
 }
-input:checked + .slider {
-  background-color: var(--switch-on-color);
+input:active + .background {
+  background-position: 100% 0;
 }
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--switch-on-color);
+
+input:active + .background-dark {
+  background-position: 100% 0;
 }
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
