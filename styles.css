@@ -14,7 +14,7 @@
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("../svgs/bg.svg")
+  --bg-url: url("./svgs/bg.svg")
 }
 
 /* Universal props */
@@ -37,7 +37,10 @@ body {
 
 .navbar {
   padding-block: 1em;
-  background-image: var(--bg-url);
+  background: transparentize(--white, 0.8);
+  backdrop-filter: blur(20px);
+  transform: perspective(500px);
+  transform-style: preserve-3d;
 }
 
 
@@ -113,10 +116,6 @@ body {
   backdrop-filter: blur(20px);
   transform: perspective(500px);
   transform-style: preserve-3d;
-}
-
-.red {
-  border-top: 3px solid var(--varyDarkBlue);
 }
   
 @media (min-width: 950px) {
