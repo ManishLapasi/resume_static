@@ -1,20 +1,25 @@
-:root {
-  --red: hsl(0, 78%, 62%);
-  --cyan: hsl(180, 62%, 55%);
-  --orange: hsl(34, 97%, 64%);
-  --blue: hsl(212, 86%, 64%);
-  --varyDarkBlue: hsl(234, 12%, 34%);
-  --grayishBlue: hsl(229, 6%, 66%);
-  --veryLightGray: hsl(0, 0%, 98%);
-  --weight1: 200;
-  --weight2: 400;
-  --weight3: 600;
-  --white: #fff;
-  --black: #000;
+:root, [data-theme="default"] {
   --font-family: 'Open Sans', sans-serif;
   --font-family: 'Open Sans Light', sans-serif;
   --font-family: 'Open Sans Condensed', sans-serif;
-  --bg-url: url("../svgs/bg.svg")
+  --bg-url: url("../svgs/bg.svg");
+  --bg-url-dark: url("../svgs/bg_dark.svg");
+  --text-color: #333;
+  --switch-on-color: #444352;
+  --switch-off-color: #ccc;
+  --toggler-color: #fff;
+}
+
+[data-theme="dark"] {
+  --font-family: 'Open Sans', sans-serif;
+  --font-family: 'Open Sans Light', sans-serif;
+  --font-family: 'Open Sans Condensed', sans-serif;
+  --bg-url: url("../svgs/bg.svg");
+  --bg-url-dark: url("../svgs/bg_dark.svg");
+  --text-color: #efefef;
+  --toggler-color: #444352;
+  --switch-on-color: #fff;
+  --switch-off-color: #ccc;
 }
 
 /* Universal props */
@@ -33,13 +38,27 @@ body {
   margin-left: 5%;
 }
 
+.background {
+  background-image: var(--bg-url);
+  color: #333;
+  transition: background 500ms;
+}
+
+.background-dark {
+  background-image: var(--bg-url-dark);
+  color: #efefef;
+  transition: background 500ms;
+}
+
 /* Menu */
 
 .navbar {
   padding-block: 1em;
-  background-image: var(--bg-url);
+  background: transparentize(--white, 0.8);
+  backdrop-filter: blur(20px);
+  transform: perspective(500px);
+  transform-style: preserve-3d;
 }
-
 
 .navbar::after {
   bottom: 0;
@@ -82,6 +101,12 @@ body {
   color: #fff;
 }
 
+.navigation__link--is-active-dark {
+  background-color: #ffffff;
+  border-radius: 999em;
+  color: #000;
+}
+
 .sticky {
   position: sticky;
   will-change: transform;
@@ -113,10 +138,6 @@ body {
   backdrop-filter: blur(20px);
   transform: perspective(500px);
   transform-style: preserve-3d;
-}
-
-.red {
-  border-top: 3px solid var(--varyDarkBlue);
 }
   
 @media (min-width: 950px) {
@@ -195,4 +216,61 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+/* dark mode toggle
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 48px;
+  height: 20px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--switch-off-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--toggler-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: var(--switch-on-color);
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--switch-on-color);
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+.slider.round:before {
+  border-radius: 50%;
 }

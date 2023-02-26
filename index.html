@@ -298,28 +298,59 @@
 
     function activeEle(ele){
         var btnContainer = document.getElementById("menuItems");
-
         // Get all buttons with class="btn" inside the container
         var btns = btnContainer.getElementsByClassName("navigation__link");
-
         // Loop through the buttons and add the active class to the current/clicked button
         for (var i = 0; i < btns.length; i++) {
             btns[i].classList.remove("navigation__link--is-active")
+            btns[i].classList.remove("navigation__link--is-active-dark")
         }
-
-        ele.classList.add("navigation__link--is-active");
+        var mode = document.getElementById("toggler")
+        if (mode.value=="light"){ele.classList.add("navigation__link--is-active");}else{ele.classList.add("navigation__link--is-active-dark");}
     }
 
+    function toggleMode(ele){
+        var value = ele.value;
+        if(value=="light"){value="dark";}else{value="light";}
+        if(value=="light"){
+            document.getElementById("bongocat").setAttribute("fill","#000000");
+            document.body.classList.remove("background-dark");
+            document.body.classList.add("background");
+            var btns = document.getElementById("menuItems").getElementsByClassName("navigation__link");
+            for (var i = 0; i < btns.length; i++) {
+                if(btns[i].classList.contains("navigation__link--is-active-dark")){
+                btns[i].classList.remove("navigation__link--is-active-dark")
+                btns[i].classList.add("navigation__link--is-active")
+                }
+            }
+        }else{
+            document.getElementById("bongocat").setAttribute("fill","#ffffff");
+            document.body.classList.remove("background");
+            document.body.classList.add("background-dark");
+            var btns = document.getElementById("menuItems").getElementsByClassName("navigation__link");
+            for (var i = 0; i < btns.length; i++) {
+                if(btns[i].classList.contains("navigation__link--is-active")){
+                btns[i].classList.remove("navigation__link--is-active")
+                btns[i].classList.add("navigation__link--is-active-dark")
+                }
+            }
+        }
+        ele.setAttribute("value",value);
+    }
 
 </script>
-<body onload="typewriter(); getExp();">
+<body onload="typewriter(); getExp();" class="background">
     <div class="navbar sticky sticky--top js-header" style="margin-left: -5%;">
         <div class="grid">
             <nav class="navigation">
-                <ul class="navigation__list navigation__list--inline" style="margin-left:30%" id="menuItems">
+                <ul class="navigation__list navigation__list--inline" style="margin-left:40%" id="menuItems">
                     <li class="navigation_item"><a href="#" class="navigation__link navigation__link--is-active" onclick="activeEle(this)">About</a></li>
                     <li class="navigation_item"><a href="#Skills" class="navigation__link" onclick="activeEle(this)">Skills</a></li>
                     <li class="navigation_item"><a href="#Experience" class="navigation__link" onclick="activeEle(this)">Experience</a></li>
+                    <li class="navigation_item"><a><label class="switch">
+                        <input id="toggler" type="checkbox" value="light" onclick="toggleMode(this)">
+                        <span class="slider round"></span>
+                      </label></a></li>
                 </ul>
             </nav>
         </div>
@@ -339,7 +370,7 @@
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="150%" height="70%" viewBox="300 0 2048.000000 1024.000000"
                 preserveAspectRatio="xMidYMid meet">               
-               <g transform="translate(512.000000,2048.000000) scale(0.1200000,-0.100000)"
+               <g id="bongocat" transform="translate(512.000000,2048.000000) scale(0.1200000,-0.100000)"
                fill="#000000" stroke="none">
                <path d="M8062 15172 c-11 -9 -84 -154 -161 -322 l-140 -305 -58 -33 c-107
                 -62 -216 -146 -334 -260 l-118 -113 -2473 270 c-1360 149 -2482 272 -2493 274
