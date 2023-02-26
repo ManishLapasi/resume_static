@@ -37,6 +37,47 @@
         return nodes;
     }
 
+    // set up text to print, each item in array is new line
+    var aText = new Array(
+    "Hi, I'm Manikandan Lapasi.", 
+    "I write code."
+    );
+    var iSpeed = 50; // time delay of print out
+    var iIndex = 0; // start printing array at this position
+    var iArrLength = aText[0].length; // the length of the text array
+    var iScrollAt = 20; // start scrolling up at this many lines
+    
+    var iTextPos = 0; // initialise text position
+    var sContents = ''; // initialise contents variable
+    var iRow; // initialise current row
+    
+    function typewriter()
+    {
+    sContents =  ' ';
+    iRow = Math.max(0, iIndex-iScrollAt);
+    var destination = document.getElementById("typedtext");
+    
+    while ( iRow < iIndex ) {
+        sContents += aText[iRow++] + '<br />';
+    }
+    if (iIndex==aText.length-1 && iTextPos >= aText[iIndex].length){
+        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos);
+    }
+    else{
+        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+    }
+    if ( iTextPos++ == iArrLength ) {
+        iTextPos = 0;
+        iIndex++;
+        if ( iIndex != aText.length ) {
+        iArrLength = aText[iIndex].length;
+        setTimeout("typewriter()", 500);
+        }
+    } else {
+    setTimeout("typewriter()", iSpeed);
+    }
+    }
+
     // set up colour scale
     const fillColour = d3.scaleOrdinal()
         .domain(["4", "6", "8", "10"])
@@ -108,7 +149,7 @@
         height = getHeight();
         r_min = width/50;
         r_max = width/20;
-        y_center = 200;
+        y_center = 175;
         charge_strength = 0.01;
         font_size = 16;
         function chart(data, centre, selector){
@@ -240,21 +281,55 @@
         chart(frameWorks, { x: 7*width/8, y: y_center }, svg1)
         barchart(areas, 600, 150, 250, svg2);
     }
+
+    
+
+    function myFunction() {
+        var $$header = document.querySelector(".js-header");
+        if (window.pageYOffset) {
+            $$header.classList.add("is-active");
+        } else {
+            $$header.classList.remove("is-active");
+        }
+    }
+
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
+
+    function activeEle(ele){
+        var btnContainer = document.getElementById("menuItems");
+
+        // Get all buttons with class="btn" inside the container
+        var btns = btnContainer.getElementsByClassName("navigation__link");
+
+        // Loop through the buttons and add the active class to the current/clicked button
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove("navigation__link--is-active")
+        }
+
+        ele.classList.add("navigation__link--is-active");
+    }
+
+
 </script>
-<body onload="getExp()">
-    <div class="menubar">
-        <ul>
-            <li class="menu"><a href="#Home">About</a></li>
-            <li class="menu"><a href="#Skills" onclick="getExp()">Skills</a></li>
-            <li class="menu"><a href="#Experience">Experience</a></li>
-        </ul>
+<body onload="typewriter(); getExp();">
+    <div class="navbar sticky sticky--top js-header" style="margin-left: -5%;">
+        <div class="grid">
+            <nav class="navigation">
+                <ul class="navigation__list navigation__list--inline" style="margin-left:30%" id="menuItems">
+                    <li class="navigation_item"><a href="#" class="navigation__link navigation__link--is-active" onclick="activeEle(this)">About</a></li>
+                    <li class="navigation_item"><a href="#Skills" class="navigation__link" onclick="activeEle(this)">Skills</a></li>
+                    <li class="navigation_item"><a href="#Experience" class="navigation__link" onclick="activeEle(this)">Experience</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <div id="Home" class="summary" >
         <div class="parent-container1" style="height: 85%;">
             <div class="child-container1" style="width: 45%; height: 100%;">
-                <p style="margin-top: 30%; margin-left: 8%;  font-size: 40px;">Hi, I'm Manikandan Lapasi.</p>
-                <p style="margin-left: 8%;  font-size: 30px;">I write code.</p>
-                <div style="margin-left: 5%;">
+                <div id="typedtext" style="font-size: 30px; margin-top: 40%; height: 20%;">
+                </div>
+                <div>
                 <a href="http://github.com/manishlapasi" class="fa fa-github fa-3x"></a>
                 <a href="http://linkedin.com/in/manikandanlp" class="fa fa-linkedin fa-3x"></a>
                 <!--<a href="mailto: manish.lapasi@gmail.com" class="fa fa-google fa-3x"></a>-->
@@ -346,8 +421,8 @@
             </div>
         </div>
         <div class="parent-container1">
-            <div class="child-container1" style="width: 70%; margin-left: 3.2%; margin-top: -5%; font-size: 24px;">
-            I'm currently pursuing my Master's in CS at Georgia Tech, and I'm expecting to graduate by Spring 2024. I'm quite interested in SDE/DevOps/SRE roles, so if you've got an opening on your team, I'd be happy to get in touch!
+            <div class="child-container1" style="width: 70%; margin-top: -5%; font-size: 24px;">
+            I'm currently pursuing my Master's in CS at Georgia Tech, and I'm expecting to graduate by Spring 2024. I'm quite interested in SDE/DevOps/SRE roles - if you've got an opening on your team, I'd be happy to get in touch!
             </div>
         </div>
     </div>
