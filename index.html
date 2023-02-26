@@ -229,7 +229,7 @@
             })
             .restart();
         }
-        function barchart(data, barwidth, barheight, xstart, selector)
+        function barchart(data, barwidth, barheight, xstart, selector, colorscheme)
         {
             var g = selector.append("g")
             .attr("style","width:100%;height:100%")
@@ -251,7 +251,7 @@
                 .attr("y", function(d){return yScale(d.id)})
                 .attr("width", function(d){return xScale(2*d.value)})
                 .attr("height", yScale.bandwidth())
-                .attr("fill", function(d){return fillColour2(d.value)});
+                .attr("fill", function(d){return colorscheme(d.value)});
 
             g.selectAll(".bar2")
                 .data(data)
@@ -262,7 +262,7 @@
                 .attr("y", function(d){return yScale(d.id)+yScale.bandwidth()/2.1})
                 .attr("width", barwidth)
                 .attr("height", barheight/100)
-                .attr("fill", '#0f0e0e');
+                .attr("fill", "currentColor");
 
             var g2 = g.append("g").attr("id","bartext");
             
@@ -274,12 +274,14 @@
                 .attr("text-anchor","end")
                 .attr("y",function(d){return yScale(d.id);})
                 .attr("dy",yScale.bandwidth())
+                .attr("fill","currentColor")
+                .attr("stroke","currentColor")
                 .text(function(d){return d.id;});
         }
         chart(languages, { x: width/8, y: y_center }, svg1)
         chart(tools, { x: 4*width/8, y: y_center }, svg1)
         chart(frameWorks, { x: 7*width/8, y: y_center }, svg1)
-        barchart(areas, 600, 150, 250, svg2);
+        barchart(areas, 600, 150, 250, svg2, fillColour2);
     }
 
     
@@ -370,8 +372,14 @@
                 <div id="typedtext" style="font-size: 30px; margin-top: 40%; height: 20%;">
                 </div>
                 <div>
-                <a href="http://github.com/manishlapasi" class="fa fa-github fa-3x"></a>
-                <a href="http://linkedin.com/in/manikandanlp" class="fa fa-linkedin fa-3x"></a>
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x icon-background" id="linkedin-circle"></i>
+                    <a href="http://linkedin.com/in/manikandanlp"  target="_blank" rel="noopener noreferrer" class="fa fa-linkedin fa-stack-1x"></a>
+                </span>
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x icon-background" id="github-circle"></i>
+                    <a href="http://github.com/manishlapasi"  target="_blank" rel="noopener noreferrer" class="fa fa-github fa-stack-1x"></a>
+                </span>
                 <!--<a href="mailto: manish.lapasi@gmail.com" class="fa fa-google fa-3x"></a>-->
                 </div>
             </div>
