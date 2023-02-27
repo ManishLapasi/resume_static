@@ -156,12 +156,13 @@
         let svg2 = d3.select("#skills2")
             .append("svg")
             .attr("id","skills2svg")
-            .attr("style","width:100%;")
+            .attr("style","width:100%;height:100%")
         console.log("svg2 appended")
         
         charge_strength = 0.01;
         font_size = 16;
         function chart(data, selector){
+            console.log("width",window.innerWidth)
             let g = selector.append("g")
                 .attr("style","width:100%;height:100%")
             var width = window.innerWidth;
@@ -174,7 +175,7 @@
                 font_size = 16
                 x_center = window.innerWidth/2
                 y_center = window.innerHeight/2;
-                r_min = height/20;
+                r_min = height/40;
                 r_max = height/10;   
             } else if (window.innerWidth<1000){
                 x_center = window.innerWidth/2.5
@@ -325,14 +326,22 @@
         var bcheight = 0
         var bwidth = 0
         var xs = 0
-        if (window.innerWidth>1000){
+        if (window.innerWidth<600){
+            bcheight = 0.2*window.innerHeight
+            bwidth = 0.4*window.innerWidth
+            xs = 0.3*window.innerWidth   
+        } else if (window.innerWidth<1000){
+            bcheight = 0.2*window.innerHeight
+            bwidth = 0.6*window.innerWidth
+            xs = 0.15*window.innerWidth
+        } else if (window.innerWidth<1200){
             bcheight = 0.2*window.innerHeight
             bwidth = 0.4*window.innerWidth
             xs = 0.2*window.innerWidth
         } else {
             bcheight = 0.2*window.innerHeight
             bwidth = 0.4*window.innerWidth
-            xs = 0.3*window.innerWidth
+            xs = 0.2*window.innerWidth
         }
         barchart(areas, bwidth, bcheight, xs, svg2, fillColour2);
     }
@@ -404,7 +413,7 @@
 
     function checkResize(prevsize){
         var currsize = window.innerWidth;
-        if (Math.abs(prevsize-currsize)>100){
+        if (Math.abs(prevsize-currsize)>window.innerWidth/10){
             getExp();
             return currsize;
         }
