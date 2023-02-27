@@ -170,20 +170,25 @@
             var r_max = width/20;
             var x_center = 0;
             var multiplier = 0.9;
-            if (window.innerWidth<1000){
+            if (window.innerWidth<600){
+                font_size = 16
                 x_center = window.innerWidth/2
+                y_center = window.innerHeight/2;
+                r_min = height/20;
+                r_max = height/10;   
+            } else if (window.innerWidth<1000){
+                x_center = window.innerWidth/2.5
                 multiplier = 1.8
                 y_center = window.innerHeight/3;
-                r_max = height/15;
-                r_min = height/40;
+                r_max = Math.min(height,width)/15;
+                r_min = Math.min(height,width)/40;
             } else if (window.innerWidth<1200){
                 font_size = 12;
                 x_center = window.innerWidth/8
                 y_center = window.innerHeight/3;
                 r_min = width/50;
                 r_max = width/20;
-            }
-            else{
+            } else {
                 font_size = 16
                 x_center = window.innerWidth/8
                 y_center = window.innerHeight/3;
@@ -325,11 +330,11 @@
             bwidth = 0.4*window.innerWidth
             xs = 0.2*window.innerWidth
         } else {
-            bcheight = 0.3*window.innerHeight
+            bcheight = 0.2*window.innerHeight
             bwidth = 0.4*window.innerWidth
-            xs = 0
+            xs = 0.3*window.innerWidth
         }
-        barchart(areas, 0.4*window.innerWidth, bcheight, 0.2*window.innerWidth, svg2, fillColour2);
+        barchart(areas, bwidth, bcheight, xs, svg2, fillColour2);
     }
 
     
