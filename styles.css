@@ -221,6 +221,14 @@ body {
   #Experience {
     margin-top: -20%;
   }
+
+  #socIcons {
+    margin-top: 10%;
+  }
+
+  #anim {
+    display: none;
+  }
 }
 /* everything else that I wanna try */
 
