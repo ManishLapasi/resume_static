@@ -6,27 +6,7 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.0/d3.min.js" integrity="sha512-jXsLjbg/Pr8F5U2evjFaEci7mImlUix865lbvnNmp5TzS86+VTTFVDz7FFTS6VHdhSn7UJ4tjZdvpp0GgT0fZA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </script>
-<script type="text/javascript">
-    function getWidth() {
-        return Math.max(
-        document.body.scrollWidth,
-        document.documentElement.scrollWidth,
-        document.body.offsetWidth,
-        document.documentElement.offsetWidth,
-        document.documentElement.clientWidth
-        );
-    }
-    
-    function getHeight() {
-        return Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.offsetHeight,
-            document.documentElement.clientHeight
-        );
-    }
-    
+<script type="text/javascript"> 
     function createNodes(data, rScale, iniX, iniY, width, height){
         var xInit = 2*width/3, yInit = 10*height/11
         const nodes = data.map(d => ({
@@ -274,7 +254,7 @@
                 .attr("id","skills2svg")
                 .attr("style","width:100%")
             if(window.screen.width<600){
-                svg2.attr("style","height:200%")
+                svg2.attr("style","height:50%")
             }
             var g = svg2.append("g")
 
@@ -332,7 +312,7 @@
         if (window.screen.width<600){
             bcheight = 0.2*window.screen.height
             bwidth = 0.4*window.screen.width
-            xs = 0.2*window.screen.width   
+            xs = 0.3*window.screen.width   
         } else if (window.screen.width<1000){
             bcheight = 0.2*window.screen.height
             bwidth = 0.6*window.screen.width
@@ -550,7 +530,7 @@
         </div>
     </div>
     <div>
-    <h1 id="Skills" style="margin-top: 5%;">Tech I've worked on</h1>
+    <h1 id="Skills" style="margin-top: 5%">Tech I've worked on</h1>
     <div class="row1-container">
         <div id="techwriteup">
             My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
