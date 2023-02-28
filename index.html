@@ -6,19 +6,14 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.0/d3.min.js" integrity="sha512-jXsLjbg/Pr8F5U2evjFaEci7mImlUix865lbvnNmp5TzS86+VTTFVDz7FFTS6VHdhSn7UJ4tjZdvpp0GgT0fZA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </script>
-<script type="text/javascript"> 
-    function createNodes(data, rScale, iniX, iniY, width, height){
-        var xInit = 2*width/3, yInit = 10*height/11
-        const nodes = data.map(d => ({
-            ...d,
-            radius: rScale(+d.value),
-            x : Math.random()*iniX ,
-            y : Math.random()*iniY 
-        }))
-        return nodes;
+<script>
+    function myFunction(){
+        var ele = document.getElementById("myTopNav")
+        if (ele.className === "navbar"){
+            ele.className += " responsive"
+        } else {ele.className = "navbar"}
     }
 
-    // set up text to print, each item in array is new line
     var aText = new Array(
     "Hi, I'm Manikandan Lapasi.", 
     "I write code."
@@ -34,306 +29,39 @@
     
     function typewriter()
     {
-    sContents =  ' ';
-    iRow = Math.max(0, iIndex-iScrollAt);
-    var destination = document.getElementById("typedtext");
-    
-    while ( iRow < iIndex ) {
-        sContents += aText[iRow++] + '<br />';
-    }
-    if (iIndex==aText.length-1 && iTextPos >= aText[iIndex].length){
-        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos);
-    }
-    else{
-        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
-    }
-    if ( iTextPos++ == iArrLength ) {
-        iTextPos = 0;
-        iIndex++;
-        if ( iIndex != aText.length ) {
-        iArrLength = aText[iIndex].length;
-        setTimeout("typewriter()", 500);
-        }
-    } else {
-    setTimeout("typewriter()", iSpeed);
-    }
-    }
-
-    // set up colour scale
-    const fillColour = d3.scaleOrdinal()
-        .domain(["4", "6", "8", "10"])
-        //.range(['#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#43a2ca','#0868ac']);
-        //.range(['#ffffcc','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84']);
-        //.range(['#fff7fb','#ece2f0','#d0d1e6','#a6bddb','#67a9cf','#3690c0','#02818a','#016c59','#014636']);
-        //.range(['#D2DAFF','#FFE3E1','#FFD1D1','#AAC4FF','#CDF0EA']);
-        //.range(['#C4DFAA','#CDF0EA','#C2DED1','#DAE5D0','#D3DEDC']);
-        .range(['#ffc090','#d7e9b9','#a6bb8d','#e5d1fa'])
-
-    const fillColour2 = d3.scaleOrdinal()
-        .domain(["3", "4"])
-        //.range(['#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#43a2ca','#0868ac']);
-        //.range(['#ffffcc','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84']);
-        //.range(['#fff7fb','#ece2f0','#d0d1e6','#a6bddb','#67a9cf','#3690c0','#02818a','#016c59','#014636']);
-        //.range(['#D2DAFF','#FFE3E1','#FFD1D1','#AAC4FF','#CDF0EA']);
-        .range(['#25316D', '#06283D'])
-    
-    var languages = [
-        {id:"Python", value: 10},
-        {id:"C++", value: 4},
-        {id:"R", value: 4},
-        {id:"Bash", value: 5},
-        {id:"SQL", value: 8},
-        {id:"NodeJS", value: 8},
-        {id:"Erlang", value: 4}
-    ];
-    var tools = [
-        {id:"Docker", value: 8},
-        {id:"Terraform", value: 10},
-        {id:"Ansible", value: 6},
-        {id:"Kubernetes", value: 8},
-        {id:"Grafana", value: 10},
-        {id:"Prometheus", value: 10},
-        {id:"Matlab", value: 6},
-        {id:"Azure", value: 8}
-    ];
-    var frameWorks = [
-        {id:"Tensorflow", value: 6},
-        {id:"Flask", value: 8},
-        {id:"ReactJS", value: 6},
-        {id:"D3", value: 8},
-        {id:"MongoDB", value: 6},
-        {id:"Neo4j", value: 8}
-    ];
-    var areas = [
-        {id:"Back-end", value: 4},
-        {id:"Front-end", value: 3},
-        {id:"Reliability", value: 4},
-        {id:"Dev-Ops", value: 3}
-    ];
-    function getExp(){
-        console.log("Exp");
-        var ele = document.getElementById("skills1-1");
-        ele.innerHTML = "";
-        var ele = document.getElementById("skills1-2");
-        ele.innerHTML = "";
-        var ele = document.getElementById("skills1-3");
-        ele.innerHTML = "";
-        ele = document.getElementById("skills2");
-        ele.innerHTML = "";
-        let svg11 = d3.select("#skills1-1")
-            .append("svg")
-            .attr("id","skills11svg")
-            .attr("style","width:100%;height:80%")
-        let svg12 = d3.select("#skills1-2")
-            .append("svg")
-            .attr("id","skills12svg")
-            .attr("style","width:100%;height:80%")
-        let svg13 = d3.select("#skills1-3")
-            .append("svg")
-            .attr("id","skills13svg")
-            .attr("style","width:100%;height:80%")
-        console.log("svg1 appended")
-        console.log("svg2 appended")
+        sContents =  ' ';
+        iRow = Math.max(0, iIndex-iScrollAt);
+        var destination = document.getElementById("TypedText");
         
-        charge_strength = 0.01;
-        font_size = 16;
-        function chart(data, selector){
-            console.log("width",window.screen.width)
-            let g = selector.append("g")
-                .attr("style","width:100%;height:100%")
-            var width = window.screen.width;
-            var height = window.screen.height;
-            var r_min = width/50;
-            var r_max = width/20;
-            var x_center = 0;
-            var multiplier = 0.9;
-            if (window.screen.width<600){
-                font_size = 16
-                x_center = window.screen.width/2
-                y_center = window.screen.height/2;
-                r_min = height/40;
-                r_max = height/10;   
-            } else if (window.screen.width<1000){
-                x_center = window.screen.width/2.5
-                multiplier = 1.8
-                y_center = window.screen.height/3;
-                r_max = Math.min(height,width)/15;
-                r_min = Math.min(height,width)/40;
-            } else if (window.screen.width<1200){
-                font_size = 12;
-                x_center = window.screen.width/8
-                y_center = window.screen.height/3;
-                r_min = width/50;
-                r_max = width/20;
-            } else {
-                font_size = 16
-                x_center = window.screen.width/8
-                y_center = window.screen.height/3;
-                r_min = width/50;
-                r_max = width/20;   
-            }
-            centre = {x:x_center, y:y_center};
-            // strength to apply to the position forces
-            const forceStrength = 0.05;
-
-            // charge is dependent on size of the bubble, so bigger towards the middle
-            function charge(d) {
-                return Math.pow(d.radius, 2.0) * charge_strength;
-            }
-
-            const maxSize= d3.max(data, d => +d.value);
-            // radius scale !!
-            const rScale = d3.scalePow().exponent(2)
-                .domain([0,maxSize])
-                .range([multiplier*r_min,multiplier*r_max])
-            const nodes = createNodes(data, rScale, 2*width/3, 10*height/11, width, height);
-            console.log(nodes)
-            const nodeDict = {}
-            for(let i in nodes){
-                nodeDict[nodes[i].id] = {value: nodes[i].value, radius: nodes[i].radius, fill: fillColour(nodes[i].radius)}
-            }
-            console.log(nodeDict)
-            // create a force simulation and add forces to it
-            const simulation = d3.forceSimulation()
-                .force('charge', d3.forceManyBody().strength(charge))
-                .force('x', d3.forceX().strength(forceStrength).x(centre.x))
-                .force('y', d3.forceY().strength(forceStrength).y(centre.y))
-                .force('collision', d3.forceCollide().radius(d => nodeDict[d.id].radius*0.95));
-            // force simulation starts up automatically, which we don't want as there aren't any nodes yet
-            simulation.stop();
-            var elements = g.selectAll('.bubble')
-                .data(nodes)
-                .enter()
-                .append('g')
-            var bubbles = elements
-                .append('circle')
-                .attr("id", d => d.id)
-                .attr('r', d => nodeDict[d.id].radius)
-                //.attr("cx", width/5)
-                //.attr("cy", height/10)
-                .attr('fill', d => nodeDict[d.id].fill)
-                .style("opacity","0.7")
-                .attr("pointer-events","visible")
-                .on("mouseover", function(d){
-                    var thisItem = d3.select(this);
-                    thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius+10)
-                    .attr("fill", nodeDict[thisItem._groups[0][0].__data__.id].fill)
-                })
-                .on("mouseout", function(d){
-                    var thisItem = d3.select(this);
-                    thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius)
-                    .attr("fill", nodeDict[thisItem._groups[0][0].__data__.id].fill)
-                })
-            // labels
-            var labels = elements
-                .append('text')
-                .attr('dy', '.3em')
-                .style('text-anchor', 'middle')
-                .style('font-size', font_size)
-                .style('stroke',"#5A5A5A")
-                .attr("id","skillsDesc")
-                .text(d => d.id)
-            // set simulation's nodes to our newly created nodes array
-            // simulation starts running automatically once nodes are set
-            simulation.nodes(nodes)
-            .on('tick', function(d){
-                bubbles
-                .attr('cx', d => d.x)
-                .attr('cy', d => d.y)
-            
-                labels
-                .attr('x', d => d.x)
-                .attr('y', d => d.y)
-            })
-            .restart();
+        while ( iRow < iIndex ) {
+            sContents += aText[iRow++] + '<br />';
         }
-        function barchart(data, barwidth, barheight, xstart, colorscheme)
-        {
-            let svg2 = d3.select("#skills2")
-                .append("svg")
-                .attr("id","skills2svg")
-                .attr("style","width:100%")
-            if(window.screen.width<600){
-                svg2.attr("style","height:50%")
-            }
-            var g = svg2.append("g")
-
-            var xScale = d3.scaleLinear().range([0,barwidth]);
-            var yScale = d3.scaleBand().range([0,barheight]).padding(0.8);
-
-            xScale.domain([0,10]);
-            yScale.domain(data.map(function(d){return d.id;}));
-
-            // check scaling
-            g.selectAll(".bar")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("class", "bar")
-                .style("rx","5px")
-                .attr("x", xstart)
-                .attr("y", function(d){return yScale(d.id)})
-                .attr("width", function(d){return xScale(2*d.value)})
-                .attr("height", yScale.bandwidth())
-                .attr("fill", function(d){return colorscheme(d.value)});
-
-            g.selectAll(".bar2")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("class", "bar")
-                .attr("x", function(d) {return xstart+xScale(2*d.value)-1})
-                .attr("y", function(d){return yScale(d.id)+yScale.bandwidth()/2.1})
-                .attr("width", function(d) {return barwidth-xScale(2*d.value)})
-                .attr("height", barheight/100)
-                .attr("fill", "currentColor");
-
-            var g2 = g.append("g").attr("id","bartext");
-            
-            g2.selectAll(".text")
-                .data(data)
-                .enter()
-                .append("text")
-                .attr("x",xstart-30)
-                .attr("text-anchor","end")
-                .attr("y",function(d){return yScale(d.id);})
-                .attr("dy",yScale.bandwidth())
-                .attr("fill","currentColor")
-                .attr("stroke","currentColor")
-                .text(function(d){return d.id;});
+        if (iIndex==aText.length-1 && iTextPos >= aText[iIndex].length){
+            destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos);
+        } else{
+            destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
         }
-        
-        chart(languages, svg11)
-        chart(tools, svg12)
-        chart(frameWorks, svg13)
-        var bcheight = 0
-        var bwidth = 0
-        var xs = 0
-        if (window.screen.width<600){
-            bcheight = 0.2*window.screen.height
-            bwidth = 0.4*window.screen.width
-            xs = 0.3*window.screen.width   
-        } else if (window.screen.width<1000){
-            bcheight = 0.2*window.screen.height
-            bwidth = 0.6*window.screen.width
-            xs = 0.15*window.screen.width
-        } else if (window.screen.width<1200){
-            bcheight = 0.2*window.screen.height
-            bwidth = 0.4*window.screen.width
-            xs = 0.2*window.screen.width
+        if ( iTextPos++ == iArrLength ) {
+            iTextPos = 0;
+            iIndex++;
+            if ( iIndex != aText.length ) {
+            iArrLength = aText[iIndex].length;
+            setTimeout("typewriter()", 500);
+            }
         } else {
-            bcheight = 0.2*window.screen.height
-            bwidth = 0.4*window.screen.width
-            xs = 0.2*window.screen.width
+        setTimeout("typewriter()", iSpeed);
         }
-        barchart(areas, bwidth, bcheight, xs, fillColour2);
     }
 
-    
+    function resizeCat(){
+        var minX = document.getElementById("TypedText").clientWidth;
+        console.log(document.getElementById("svgContainer"))
+    }
+
     var prevScrollpos = window.pageYOffset;
-    function myFunction() {
+    function navresp() {
         var currScrollpos = window.pageYOffset;
-        var $$header = document.querySelector(".js-header");
+        var $$header = document.getElementById("myTopNav");
         if (window.pageYOffset) {
             $$header.classList.add("is-active");
         } else {
@@ -348,56 +76,165 @@
     }
 
     // When the user scrolls the page, execute myFunction
-    window.onscroll = function() {myFunction()};
+    window.onscroll = function() {navresp()};
 
-    function activeEle(ele){
-        var btnContainer = document.getElementById("menuItems");
-        // Get all buttons with class="btn" inside the container
-        var btns = btnContainer.getElementsByClassName("navigation__link");
-        // Loop through the buttons and add the active class to the current/clicked button
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].classList.remove("navigation__link--is-active")
-            btns[i].classList.remove("navigation__link--is-active-dark")
-        }
-        var mode = document.getElementById("toggler")
-        if (mode.value=="light"){ele.classList.add("navigation__link--is-active");}else{ele.classList.add("navigation__link--is-active-dark");}
-    }
+    var languages = [
+        {id:"Python", value: 10},
+        {id:"C++", value: 4},
+        {id:"NodeJS", value: 8},
+        {id:"R", value: 4},
+        {id:"Bash", value: 5},
+        {id:"SQL", value: 8},
+        {id:"Erlang", value: 4}
+    ];
+    var tools = [
+        {id:"Docker", value: 8},
+        {id:"Terraform", value: 10},
+        {id:"Kubernetes", value: 8},
+        {id:"Grafana", value: 10},
+        {id:"Ansible", value: 6},
+        {id:"Prometheus", value: 10},
+        {id:"Azure", value: 8}
+    ];
+    var frameWorks = [
+        {id:"Tensorflow", value: 6},
+        {id:"Flask", value: 8},
+        {id:"ReactJS", value: 6},
+        {id:"D3", value: 8},
+        {id:"MongoDB", value: 6},
+        {id:"Neo4j", value: 8}
+    ];
 
-    function toggleMode(ele){
-        var value = ele.value;
-        if(value=="light"){value="dark";}else{value="light";}
-        if(value=="light"){
-            document.getElementById("bongocat").setAttribute("fill","#000000");
-            document.body.classList.remove("background-dark");
-            document.body.classList.add("background");
-            var btns = document.getElementById("menuItems").getElementsByClassName("navigation__link");
-            for (var i = 0; i < btns.length; i++) {
-                if(btns[i].classList.contains("navigation__link--is-active-dark")){
-                btns[i].classList.remove("navigation__link--is-active-dark")
-                btns[i].classList.add("navigation__link--is-active")
-                }
+    var maxlen = Math.max(languages.length, tools.length, frameWorks.length)
+    console.log(maxlen);
+
+    var cs = ['#ffc090','#d7e9b9','#a6bb8d','#e5d1fa'];
+    var colorScale = d3.scaleOrdinal().domain([4,6,8,10]).range(cs)
+
+    function getExp(){
+        function makeChart(data, selector, svgId){
+            var ele = document.getElementById(selector)
+            ele.innerHTML = '';
+            let svg1 = d3.select("#"+selector)
+                .append("svg")
+                .attr("id",svgId)
+                .style("width","100%")
+                .style("height","100%");
+            var cw = ele.clientWidth;
+            var ch = ele.clientHeight;
+            var rMin, rMax;
+            var centresX = Array.from({length:data.length}, (_,i) => (i+1)*cw/(data.length+1))
+            var centresY;
+            if (ele.clientWidth<800) {
+                console.log("this")
+                var nVert = 3;
+                rMax = 0.4*(Math.max(cw,ch/2))/nVert;
+                rMin = rMax/2;
+                centresY = Array.from({length:nVert}, (_,i) => (i+1)*ch/(nVert+1))
+            } else if (ele.clientWidth<600) {
+                console.log("this")
+                var nVert = 3;
+                rMax = 1*(Math.max(cw,ch/2))/nVert;
+                rMin = rMax/2;
+                centresY = Array.from({length:nVert}, (_,i) => (i+1)*ch/(nVert+1))
+            } else {
+                rMax = 0.5*cw/data.length;
+                rMin = rMax/2;
+                console.log("no, this")
+                centresY = [ch/2]
             }
-            document.getElementById("bartext").setAttribute("fill","#000000");
-        }else{
-            document.getElementById("bongocat").setAttribute("fill","#ffffff");
-            document.body.classList.remove("background");
-            document.body.classList.add("background-dark");
-            var btns = document.getElementById("menuItems").getElementsByClassName("navigation__link");
-            for (var i = 0; i < btns.length; i++) {
-                if(btns[i].classList.contains("navigation__link--is-active")){
-                btns[i].classList.remove("navigation__link--is-active")
-                btns[i].classList.add("navigation__link--is-active-dark")
-                }
+            //console.log(centres)1
+
+            // strength to apply to the position forces
+            const forceStrength = 0.05;
+            const charge_strength = 0.015;
+
+            // charge is dependent on size of the bubble, so bigger towards the middle
+            function charge(d) {
+                return Math.pow(d.radius, 2.0) * charge_strength;
             }
-            document.getElementById("bartext").setAttribute("fill","#ffffff");
+
+            const nodes = data.map((d,i) => ({
+                ...d,
+                centerX: centresX[i],
+                centerY: centresY[i%centresY.length]
+            }))
+            console.log(nodes);
+            var rScale = d3.scaleLinear().domain([4,10]).range([rMin,rMax])
+            var nodeDict = {};
+            for(let i in nodes){
+                nodeDict[nodes[i].id] = {id:nodes[i].id, centerX: nodes[i].centerX, centerY: nodes[i].centerY, value: nodes[i].value, radius:rScale(nodes[i].value), fill: colorScale(nodes[i].value)}
+            }
+
+            // create a force simulation and add forces to it
+            const simulation = d3.forceSimulation()
+                .force('charge', d3.forceManyBody().strength(charge))
+                .force('x', d3.forceX().strength(forceStrength).x(d => nodeDict[d.id].centerX))
+                .force('y', d3.forceY().strength(forceStrength).y(d => nodeDict[d.id].centerY))
+                .force('collision', d3.forceCollide().radius(d => nodeDict[d.id].radius*0.95));
+            // force simulation starts up automatically, which we don't want as there aren't any nodes yet
+            simulation.stop();
+
+            g = svg1.append("g");
+            var elements = g.selectAll('.bubble')
+                .data(nodes)
+                .enter()
+                .append('g')
+            var bubbles = elements.append('circle')
+                .attr("id", (d) => d.id)
+                .attr("cx", (d) => d.centerX)
+                .attr("cy", (d) => d.centerY)
+                .attr("r", (d) => nodeDict[d.id].radius)
+                .attr("fill", (d) => nodeDict[d.id].fill)
+                .attr("text",(d)=>d.id)
+                .style("opacity","0.7")
+                .attr("pointer-events","visible")
+                .on("mouseover", function(d){
+                    var thisItem = d3.select(this);
+                    thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius+10)
+                    .attr("fill",nodeDict[thisItem._groups[0][0].__data__.id].fill)
+                })
+                .on("mouseout", function(d){
+                    var thisItem = d3.select(this);
+                    thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius)
+                    .attr("fill",nodeDict[thisItem._groups[0][0].__data__.id].fill)
+                })
+            var labels = elements
+                .append('text')
+                .attr("x", (d) => d.centerX)
+                .attr("y", (d) => d.centerY)
+                .attr('dy', '.3em')
+                .style('text-anchor', 'middle')
+                //.style('font-size', font_size)
+                .style('stroke',"#5A5A5A")
+                .attr("id","skillsDesc")
+                .text(d => d.id)
+
+            // set simulation's nodes to our newly created nodes array
+            // simulation starts running automatically once nodes are set
+            simulation.nodes(nodes)
+            .on('tick', function(d){
+                bubbles
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y)
+            
+                labels
+                .attr('x', d => d.x)
+                .attr('y', d => d.y)
+            })
+            .restart();
         }
-        ele.setAttribute("value",value);
+        makeChart(languages, "languages", "svg1")
+        makeChart(tools, "tools", "svg2")
+        makeChart(frameWorks, "frameworks", "svg3")
     }
 
     function checkResize(prevsize){
         var currsize = window.screen.width;
-        if (Math.abs(prevsize-currsize)>window.screen.width/10){
+        if (Math.abs(prevsize-currsize)>20 && currsize<1100){
+            console.log("resized")
             getExp();
+            //resizeCat();
             return currsize;
         }
         return prevsize;
@@ -408,174 +245,125 @@
         prevsize = checkResize(prevsize);
     };
 
+    function toggleMode(ele){
+        console.log("toggling")
+        var value = ele.value;
+        if(value=="light"){value="dark";}else{value="light";}
+        if(value=="light"){
+            //document.getElementById("bongocat").setAttribute("fill","#000000");
+            document.body.classList.remove("bg-dark");
+        }else{
+            //document.getElementById("bongocat").setAttribute("fill","#ffffff");
+            document.body.classList.add("bg-dark");
+        }
+        ele.setAttribute("value",value);
+    }
+
 </script>
-<body onload="typewriter(); getExp();" class="background">
-    <div class="navbar sticky sticky--top js-header" style="margin-left: -5%;">
-        <div class="grid">
-            <nav class="navigation">
-                <ul class="navigation__list navigation__list--inline" id="menuItems">
-                    <li class="navigation_item"><a href="#" class="navigation__link navigation__link--is-active" onclick="activeEle(this)">About</a></li>
-                    <li class="navigation_item"><a href="#Skills" class="navigation__link" onclick="activeEle(this); getExp()">Skills</a></li>
-                    <li class="navigation_item"><a href="#Experience" class="navigation__link" onclick="activeEle(this)">Experience</a></li>
-                    <li class="navigation_item"><a><label class="switch">
-                        <input id="toggler" type="checkbox" value="light" onclick="toggleMode(this)">
-                        <span class="slider round"></span>
-                      </label></a></li>
-                </ul>
-            </nav>
-        </div>
+<body onload="typewriter(); getExp();">
+    <div class="navbar sticky sticky--top" id="myTopNav">
+        <a class="navItem" href="#">About</a>
+        <a class="navItem" href="#Skills" onclick="getExp();">Skills</a>
+        <a class="navItem" href="#Experience">Experience</a>
+        <a><label class="switch">
+            <input id="toggler" type="checkbox" value="light" onclick="toggleMode(this)">
+            <span class="slider round"></span>
+        </label></a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <div id="Home" class="summary" style="margin-top: -10%;">
-        <div class="child-container1">
-            <div id="typedtext" style="font-size: 30px; margin-top: 40%; height: 20%;">
+    <div class="section1">
+        <div class="summary boxed">
+            <div class="TypedText" id="TypedText">
             </div>
-            <div id="socIcons">
-            <span class="fa-stack fa-3x">
-                <i class="fa fa-circle fa-stack-2x icon-background" id="linkedin-circle"></i>
-                <a href="http://linkedin.com/in/manikandanlp"  target="_blank" rel="noopener noreferrer" class="fa fa-linkedin fa-stack-1x"></a>
-            </span>
-            <span class="fa-stack fa-3x">
-                <i class="fa fa-circle fa-stack-2x icon-background" id="github-circle"></i>
-                <a href="http://github.com/manishlapasi"  target="_blank" rel="noopener noreferrer" class="fa fa-github fa-stack-1x"></a>
-            </span>
-            <!--<a href="mailto: manish.lapasi@gmail.com" class="fa fa-google fa-3x"></a>-->
+            <div class="socIcons">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x icon-background" id="linkedin-circle"></i>
+                    <a href="http://linkedin.com/in/manikandanlp"  target="_blank" rel="noopener noreferrer" class="fa fa-linkedin fa-stack-1x"></a>
+                </span>
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x icon-background" id="github-circle"></i>
+                    <a href="http://github.com/manishlapasi"  target="_blank" rel="noopener noreferrer" class="fa fa-github fa-stack-1x"></a>
+                </span>
             </div>
         </div>
-        <div id="anim">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="150%" height="70%" viewBox="300 0 2048.000000 1024.000000"
-            preserveAspectRatio="xMidYMid meet">               
-            <g id="bongocat" transform="translate(512.000000,2048.000000) scale(0.1200000,-0.100000)"
-            fill="#000000" stroke="none">
-            <path d="M8062 15172 c-11 -9 -84 -154 -161 -322 l-140 -305 -58 -33 c-107
-            -62 -216 -146 -334 -260 l-118 -113 -2473 270 c-1360 149 -2482 272 -2493 274
-            -40 4 -24 -99 129 -832 80 -387 144 -707 141 -709 -3 -3 -197 37 -432 88 -396
-            86 -427 91 -439 75 -14 -18 -9 -41 9 -48 7 -2 206 -46 442 -98 237 -51 433
-            -95 437 -98 7 -6 558 -2671 558 -2700 0 -13 -8 -16 -38 -13 -27 3 -42 -1 -52
-            -13 -29 -35 6 -45 301 -91 3699 -578 5154 -804 5179 -804 16 0 30 5 30 11 0 5
-            5 7 10 4 6 -3 10 -17 10 -31 0 -20 5 -24 30 -24 22 0 58 22 142 88 62 49 397
-            307 743 573 347 267 768 592 937 722 170 130 316 237 326 237 9 0 34 11 55 25
-            40 28 51 70 21 82 -12 4 -12 8 -4 13 18 11 12 12 -325 75 -165 31 -673 126
-            -1130 211 -456 85 -891 167 -966 181 l-136 25 -23 135 c-12 74 -20 137 -17
-            139 2 2 330 -59 728 -137 398 -77 760 -147 804 -154 44 -8 251 -48 460 -89
-            209 -42 397 -76 417 -76 21 0 55 -7 75 -15 21 -8 539 -112 1152 -231 992 -192
-            1115 -214 1129 -201 16 17 11 44 -10 52 -7 3 -263 54 -568 113 l-555 107 -6
-            115 c-20 368 -174 909 -361 1272 -91 177 -190 285 -243 264 -28 -10 -16 -35
-            49 -100 57 -56 75 -85 155 -247 174 -353 313 -851 328 -1172 l6 -118 -24 5
-            c-13 3 -258 51 -543 107 -286 55 -527 104 -537 109 -9 5 -19 7 -22 4 -2 -3
-            -167 27 -366 66 -199 38 -373 70 -388 70 -15 0 -40 5 -57 11 -17 6 -393 81
-            -836 168 l-805 156 -57 330 c-31 182 -59 347 -62 368 l-6 37 41 0 c23 0 68 7
-            101 16 33 8 61 14 63 12 1 -2 13 -23 25 -48 62 -125 180 -182 304 -146 99 29
-            232 178 196 221 -21 25 -37 17 -79 -42 -72 -102 -164 -142 -249 -108 -47 19
-            -95 69 -117 122 -14 33 -14 38 1 54 38 42 -12 76 -66 45 -59 -35 -99 -48 -162
-            -53 -78 -7 -68 -24 -97 162 -100 629 -178 1102 -184 1113 -5 6 -24 12 -42 12
-            -35 0 -373 36 -434 46 l-34 5 69 70 c90 92 237 204 327 249 l72 36 135 292
-            c74 160 138 293 141 297 7 7 318 -341 327 -365 7 -21 54 -59 73 -60 8 0 19 4
-            25 10 6 6 67 -2 177 -24 716 -147 1518 -512 1865 -848 131 -127 173 -196 181
-            -297 5 -58 9 -66 28 -69 13 -2 27 5 37 20 14 19 67 37 314 105 163 45 297 81
-            298 80 1 -1 -54 -144 -122 -317 -68 -173 -123 -327 -124 -341 0 -34 28 -46 50
-            -22 22 24 292 718 288 741 -2 11 -14 18 -33 20 -17 1 -165 -35 -331 -81 -347
-            -96 -321 -97 -376 13 -36 74 -169 216 -283 305 -289 225 -771 463 -1255 620
-            -179 58 -490 137 -634 161 l-108 19 -111 125 c-62 68 -148 165 -191 215 -44
-            49 -85 93 -92 97 -7 5 -21 0 -32 -10z m-3273 -832 c1317 -143 2396 -262 2399
-            -264 2 -3 -25 -40 -61 -83 -174 -212 -334 -455 -503 -763 -23 -43 -115 -260
-            -156 -370 -50 -131 -106 -348 -114 -440 -4 -43 -11 -70 -19 -70 -6 0 -313 59
-            -681 131 -368 72 -705 137 -749 145 -109 20 -2264 490 -2269 495 -4 4 -306
-            1468 -306 1482 0 4 15 5 33 2 17 -3 1109 -122 2426 -265z m2761 -300 c107 -11
-            208 -21 224 -22 l30 -3 68 -430 c37 -236 74 -475 82 -530 8 -55 19 -122 25
-            -150 23 -111 24 -105 -7 -94 -77 29 -132 98 -132 166 0 46 -51 56 -65 13 -7
-            -24 3 -87 21 -120 30 -58 143 -139 196 -140 9 0 19 -8 22 -17 10 -38 118 -705
-            114 -708 -4 -4 -1709 324 -1715 329 -1 1 4 48 13 104 65 440 398 1094 792
-            1555 64 75 68 78 102 73 19 -3 123 -15 230 -26z m-3770 -1241 c1291 -282 1016
-            -226 2875 -585 814 -157 1483 -289 1487 -292 10 -10 51 -262 44 -269 -3 -3
-            -484 84 -1068 193 -585 109 -1082 200 -1106 202 -55 5 -72 -3 -332 -163 -881
-            -542 -2456 -1508 -2466 -1512 -8 -3 -15 5 -19 19 -8 35 -545 2648 -545 2653 0
-            2 6 2 13 0 6 -3 509 -113 1117 -246z m2405 -848 c138 -20 2010 -372 2017 -379
-            3 -4 83 -464 177 -1022 94 -558 174 -1028 177 -1045 6 -25 4 -28 -8 -17 -8 6
-            -1190 195 -2644 422 -1445 226 -2629 412 -2631 413 -1 2 591 366 1315 811 724
-            444 1328 816 1341 825 25 17 102 15 256 -8z m2432 -450 c175 -33 516 -96 758
-            -141 242 -45 644 -119 893 -166 250 -46 456 -84 458 -84 7 0 -55 -51 -151
-            -125 -49 -38 -335 -258 -635 -489 -1088 -837 -1301 -1001 -1308 -1003 -6 -2
-            -353 2032 -352 2060 0 11 -5 11 337 -52z"/>
-            <path d="M7605 13450 c-42 -7 -124 -50 -145 -75 -18 -22 -14 -84 7 -113 67
-            -90 192 -95 275 -12 43 42 48 74 23 134 -31 73 -58 85 -160 66z"/>
-            <path d="M9111 12968 c-56 -28 -101 -81 -101 -120 0 -17 9 -46 21 -65 42 -67
-            115 -81 202 -37 93 48 100 84 31 168 -25 31 -46 56 -47 56 -1 0 -16 4 -34 9
-            -25 7 -40 5 -72 -11z"/>
-            <path id="pawc1" d="M6258 13370 c-44 -13 -93 -47 -133 -92 -142 -156 -153 -474 -27 -781
-            37 -91 62 -118 88 -96 20 17 18 27 -21 111 -193 418 -52 878 242 793 291 -85
-            521 -574 433 -919 -22 -88 -19 -108 19 -104 23 3 28 10 44 73 38 149 19 375
-            -47 550 -82 215 -246 403 -400 455 -61 20 -149 25 -198 10z"/>
-            <path id="pawc1" d="M9856 11729 c-146 -155 -241 -328 -266 -485 -29 -178 43 -322 184
-            -371 65 -22 188 -21 276 2 212 55 462 246 607 463 75 111 122 224 103 247 -24
-            29 -39 15 -86 -81 -180 -369 -602 -647 -865 -571 -98 29 -149 99 -157 212 -10
-            165 83 360 261 545 53 54 77 86 73 96 -3 9 -6 18 -6 20 0 2 -11 4 -24 4 -17 0
-            -46 -23 -100 -81z"/>
-            <path id="pawc2" d="M10103 12710 c-118 -24 -212 -140 -244 -299 -17 -89 -7 -296 21 -391
-            23 -81 101 -253 127 -282 19 -22 52 -23 59 -3 3 8 -19 65 -50 127 -72 146 -99
-            256 -100 403 -1 184 56 315 160 365 149 73 364 -69 489 -323 83 -168 99 -238
-            98 -429 l0 -158 23 0 c30 0 33 7 44 97 22 200 -46 456 -171 640 -120 176 -311
-            282 -456 253z"/>
-            <path id="pawc2" d="M6255 12584 c-72 -53 -180 -160 -230 -229 -61 -85 -121 -214 -141
-            -302 -22 -101 -16 -229 16 -301 31 -72 110 -143 185 -167 72 -22 193 -16 280
-            14 190 67 388 256 485 463 48 103 72 201 68 277 -3 52 -5 56 -28 56 -23 0 -25
-            -5 -36 -82 -21 -145 -70 -259 -165 -386 -140 -185 -388 -315 -546 -286 -92 18
-            -147 61 -184 144 -92 210 86 588 359 759 33 21 42 32 40 49 -5 36 -46 32 -103
-            -9z"/>
-            </g>
-            </svg>
-        </div>
-        <div class="child-container1">
+        <div id="bongocat_anim"></div>
+    </div>
+    <div class="sumText boxed">
         I'm currently pursuing my Master's in CS at Georgia Tech, and I'm expecting to graduate by Spring 2024. I'm quite interested in SDE/DevOps/SRE roles - if you've got an opening on your team, I'd be happy to get in touch!
+    </div>
+    <h1 id="#Skills">Tech I've worked on</h1>
+    <div class="section2">
+        <div>
+            <div class="techbox blur-transparent-effect boxed">
+                My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
+            </div>
+        </div>
+        <div class="techbars blur-transparent-effect boxed">
+            <p>Backend</p>
+            <div class="skillbar">
+            <div class="skills back-end"></div>
+            </div>
+
+            <p>Frontend</p>
+            <div class="skillbar">
+            <div class="skills front-end"></div>
+            </div>
+
+            <p>Reliability</p>
+            <div class="skillbar">
+            <div class="skills sre"></div>
+            </div>
+
+            <p>DevOps</p>
+            <div class="skillbar">
+            <div class="skills devops"></div>
+            </div>
+            </div>
+        </div>
+    <div class="section4">
+        <div class="areaName">
+            <p>Languages</p>
+        </div>
+        <div class="areaSVG" id="languages">
         </div>
     </div>
-    <div>
-    <h1 id="Skills" style="margin-top: 5%">Tech I've worked on</h1>
-    <div class="row1-container">
-        <div id="techwriteup">
-            My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
+    <div class="section4">
+        <div class="areaName">
+            <p>Tools</p>
         </div>
-        <div id="skills2">
+        <div class="areaSVG" id="tools">
         </div>
     </div>
-    <div class="child-container2"  id="skills1-1"></div>
-    <div class="child-container2"  id="skills1-2"></div>
-    <div class="child-container2"  id="skills1-3"></div>
+    <div class="section4">
+        <div class="areaName">
+            <p>Frameworks</p>
+        </div>
+        <div class="areaSVG" id="frameworks">
+        </div>
     </div>
-    <br>
-    <h1 id="Experience">Teams I've worked with</h1>
-    <div class="box">
-        <h2>Honeywell</h2>
-        <h3>Site Reliability Engineer / Advanced SE</h3>
-        <p>I was the SRE focal for an org-wide authentication and authorisation flow, which facilitated RBAC policies for multiple clients</p>
-        <p>I implemented continuous monitoring and alerting for the IAM (Identity and authentication Management) service. I also worked on automating infrastructure provisioning and configuration on Microsoft Azure.</p>
     </div>
-    <div class="box">
-        <h2>GreyOrange Robotics</h2>
-        <h3>Software Developer Intern</h3>
-        <p>I was part of the Research and Development (R&D) team for GreyOrange's flagship robot - the Butler. I improved the time complexity of its path planning algorithm from linear to logarithmic time by implementing a binary heap based data structure for a grid map.</p>
-        <p>I also implemented a real-time visualisation tool for the robot's path.</p>
+    <div class="section3">
+        <h1 id="Experience">Teams I've worked with</h1>
+        <div class="box blur-transparent-effect boxed">
+            <h2>Honeywell</h2>
+            <h3>Site Reliability Engineer / Advanced SE</h3>
+            <p>I was the SRE focal for an org-wide authentication and authorisation flow, which facilitated RBAC policies for multiple clients</p>
+            <p>I implemented continuous monitoring and alerting for the IAM (Identity and authentication Management) service. I also worked on automating infrastructure provisioning and configuration on Microsoft Azure.</p>
+        </div>
+        <div class="box blur-transparent-effect boxed">
+            <h2>GreyOrange Robotics</h2>
+            <h3>Software Developer Intern</h3>
+            <p>I was part of the Research and Development (R&D) team for GreyOrange's flagship robot - the Butler. I improved the time complexity of its path planning algorithm from linear to logarithmic time by implementing a binary heap based data structure for a grid map.</p>
+            <p>I also implemented a real-time visualisation tool for the robot's path.</p>
+        </div>
+        <div class="box blur-transparent-effect boxed">
+            <h2>SpaceX - Hyperloop</h2>
+            <h3>Research / Competition</h3>
+            <p>I led the propulsion subsystem department of Avishkar Hyperloop - India's (and Asia's only) student-run hyperloop pod competition finalists.</p>
+            <p>I worked primarily on the kinematics and the dynamics of the pod, by deconstructing complex differential equations involving multiple propulsion components (electric motors, suspension systems, etc.).</p>
+        </div>
     </div>
-    <div class="box">
-        <h2>SpaceX - Hyperloop</h2>
-        <h3>Research / Competition</h3>
-        <p>I led the propulsion subsystem department of Avishkar Hyperloop - India's (and Asia's only) student-run hyperloop pod competition finalists.</p>
-        <p>I worked primarily on the kinematics and the dynamics of the pod, by deconstructing complex differential equations involving multiple propulsion components (electric motors, suspension systems, etc.).</p>
-    </div>
-    <!--
-    <h1 id="Academia">Academia</h1>
-    <div class="box red" style="width: 92%;">
-        <h2>Georgia Tech</h2>
-        <h3>Master's in Computer Science <span style="font-style: italic;"> (GPA: 4.0/4.0) </span></h3>
-        <p style="font-style: italic;">Courses: Graduate Algorithms, Information Security, Database System Design, Deep Learning, Game AI, Data Analytics, Data Visualisation</p>
-        <p>Worked with pretty smart colleagues to build cool projects (like this Spotify Music Recommendation app) and other repos that I'm working on getting made public pretty soon!</p>
-    </div>
-    
-    <div id="Contact">
-        <a href="http://github.com/manishlapasi" class="fa fa-github"></a>
-        <a href="http://linkedin.com/in/manikandanlp" class="fa fa-linkedin"></a>
-        <a href="mailto: manish.lapasi@gmail.com" class="fa fa-google"></a>
-    </div>
-    -->
+    <footer></footer>
 </body>
-   
