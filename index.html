@@ -199,6 +199,7 @@
                     thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius)
                     .attr("fill",nodeDict[thisItem._groups[0][0].__data__.id].fill)
                 })
+                .classed("fixed", d => d.fx !== undefined);
             var labels = elements
                 .append('text')
                 .attr("x", (d) => d.centerX)
@@ -223,6 +224,32 @@
                 .attr('y', d => d.y)
             })
             .restart();
+
+            function click(event, d) {
+                delete d.fx;
+                delete d.fy;
+                d3.select(this).classed("fixed", false);
+                simulation.alpha(1).restart();
+            }
+
+            function dragstart() {
+                d3.select(this).classed("fixed", true);
+            }
+
+            function clamp(x, lo, hi) {
+                return x < lo ? lo : x > hi ? hi : x;
+            }
+            function dragged(event, d) {
+                d.fx = clamp(event.x, rMax, cw-rMax);
+                d.fy = clamp(event.y, rMax, ch-rMax);
+                simulation.alpha(1).restart();
+            }
+
+            const drag = d3
+                .drag()
+                .on("start", dragstart)
+                .on("drag", dragged);
+            bubbles.call(drag).on("click", click);
         }
         makeChart(languages, "languages", "svg1")
         makeChart(tools, "tools", "svg2")
@@ -257,6 +284,10 @@
             for(i in arr){
                 document.getElementById(arr[i]).classList.remove("skbar-dark")
             }
+            arr = document.getElementById("myTopNav").childNodes;
+            arr[1].classList.remove("darkNavItem")
+            arr[3].classList.remove("darkNavItem")
+            arr[5].classList.remove("darkNavItem")
         }else{
             console.log("light to dark")
             //document.getElementById("bongocat").setAttribute("fill","#ffffff");
@@ -265,19 +296,22 @@
             for(i in arr){
                 document.getElementById(arr[i]).classList.add("skbar-dark")
             }
-            
+            arr = document.getElementById("myTopNav").childNodes;
+            arr[1].classList.add("darkNavItem")
+            arr[3].classList.add("darkNavItem")
+            arr[5].classList.add("darkNavItem")
         }
         ele.setAttribute("value",value);
     }
 
 </script>
-<body onload="typewriter(); getExp();">
+<body onload="typewriter(); getExp();" class="bg-dark">
     <div class="navbar sticky sticky--top" id="myTopNav">
-        <a class="navItem" href="#">About</a>
-        <a class="navItem" href="#Skills" onclick="getExp();">Skills</a>
-        <a class="navItem" href="#Experience">Experience</a>
+        <a class="navItem darkNavItem" href="#">About</a>
+        <a class="navItem darkNavItem" href="#Skills" onclick="getExp();">Skills</a>
+        <a class="navItem darkNavItem" href="#Experience">Experience</a>
         <a><label class="switch">
-            <input id="toggler" type="checkbox" value="light" onclick="toggleMode(this)">
+            <input id="toggler" type="checkbox" value="dark" onclick="toggleMode(this)">
             <span class="slider round"></span>
         </label></a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
