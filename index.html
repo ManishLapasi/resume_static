@@ -175,6 +175,10 @@
             // force simulation starts up automatically, which we don't want as there aren't any nodes yet
             simulation.stop();
 
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
             g = svg1.append("g");
             var elements = g.selectAll('.bubble')
                 .data(nodes)
@@ -193,11 +197,14 @@
                     var thisItem = d3.select(this);
                     thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius+10)
                     .attr("fill",nodeDict[thisItem._groups[0][0].__data__.id].fill)
+                    simulation.force('x', d3.forceX().strength(forceStrength).x(d => nodeDict[d.id].centerX+getRandomArbitrary(-cw/50,cw/50)))
+                    simulation.alpha(0.1).restart();
                 })
                 .on("mouseout", function(d){
                     var thisItem = d3.select(this);
                     thisItem.attr("r",nodeDict[thisItem._groups[0][0].__data__.id].radius)
                     .attr("fill",nodeDict[thisItem._groups[0][0].__data__.id].fill)
+                    //simulation.stop();
                 })
                 .classed("fixed", d => d.fx !== undefined);
             var labels = elements
