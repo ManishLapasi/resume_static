@@ -2,8 +2,8 @@
     --font-family: 'Open Sans', sans-serif;
     --font-family: 'Open Sans Light', sans-serif;
     --font-family: 'Open Sans Condensed', sans-serif;
-    --bg-url: url("./svgs/bg2.svg");
-    --bg-url-dark: url("./svgs/bg_dark.svg");
+    --bg-url: url("../svgs/bg2.svg");
+    --bg-url-dark: url("../svgs/bg_dark.svg");
     --text-color: #333;
     --switch-on-color: #444352;
     --switch-off-color: #ccc;
@@ -351,7 +351,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--switch-off-color);
+    background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -366,6 +366,19 @@ body {
     -webkit-transition: .4s;
     transition: .4s;
 }
+
+.slider-dark {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #04AA6D;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
 input:active + .background {
     background-position: 100% 0;
 }
