@@ -2,8 +2,8 @@
     --font-family: 'Open Sans', sans-serif;
     --font-family: 'Open Sans Light', sans-serif;
     --font-family: 'Open Sans Condensed', sans-serif;
-    --bg-url: url("../svgs/bg2.svg");
-    --bg-url-dark: url("../svgs/bg_dark.svg");
+    --bg-url: url("./svgs/bg2.svg");
+    --bg-url-dark: url("./svgs/bg_dark.svg");
     --text-color: #333;
     --switch-on-color: #444352;
     --switch-off-color: #ccc;
@@ -51,6 +51,10 @@ body {
 
 .navbar a.icon {
     display: none;
+}
+
+.navbar a.hamburger-dark {
+    color: #daaa50;
 }
 
 .navbar a.navItem:hover {
@@ -324,6 +328,11 @@ body {
     }
 }
 
+@media screen and (max-width:600px){
+    .areaName {
+        margin-top: 0;
+    }
+}
 
 /* switch for dark mode */
 
