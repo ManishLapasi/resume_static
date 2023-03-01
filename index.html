@@ -287,6 +287,7 @@
             console.log("dark to light")
             //document.getElementById("bongocat").setAttribute("fill","#000000");
             document.body.classList.remove("bg-dark");
+            document.getElementById("hamburger").classList.remove("hamburger-dark");
             var arr = ["back-end","front-end","sre","devops"]
             for(i in arr){
                 document.getElementById(arr[i]).classList.remove("skbar-dark")
@@ -301,6 +302,7 @@
             console.log("light to dark")
             //document.getElementById("bongocat").setAttribute("fill","#ffffff");
             document.body.classList.add("bg-dark");
+            document.getElementById("hamburger").classList.add("hamburger-dark");
             var arr = ["back-end","front-end","sre","devops"]
             for(i in arr){
                 document.getElementById(arr[i]).classList.add("skbar-dark")
@@ -325,7 +327,7 @@
             <input id="toggler" type="checkbox" value="dark" onclick="toggleMode(this)">
             <span class="slider round slider-dark" id="slider"></span>
         </label></a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <a href="javascript:void(0);" class="icon hamburger-dark" onclick="myFunction()" id="hamburger">
             <i class="fa fa-bars"></i>
         </a>
     </div>
@@ -358,22 +360,22 @@
         </div>
         <div class="techbars boxed">
             <p>Backend</p>
-            <div class="skillbar" id="back-end">
+            <div class="skillbar skbar-dark" id="back-end">
             <div class="skills back-end"></div>
             </div>
 
             <p>Frontend</p>
-            <div class="skillbar" id="front-end">
+            <div class="skillbar skbar-dark" id="front-end">
             <div class="skills front-end"></div>
             </div>
 
             <p>Reliability</p>
-            <div class="skillbar" id="sre">
+            <div class="skillbar skbar-dark" id="sre">
             <div class="skills sre"></div>
             </div>
 
             <p>DevOps</p>
-            <div class="skillbar" id="devops">
+            <div class="skillbar skbar-dark" id="devops">
             <div class="skills devops"></div>
             </div>
             </div>
