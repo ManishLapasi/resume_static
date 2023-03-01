@@ -250,11 +250,22 @@
         var value = ele.value;
         if(value=="light"){value="dark";}else{value="light";}
         if(value=="light"){
+            console.log("dark to light")
             //document.getElementById("bongocat").setAttribute("fill","#000000");
             document.body.classList.remove("bg-dark");
+            var arr = ["back-end","front-end","sre","devops"]
+            for(i in arr){
+                document.getElementById(arr[i]).classList.remove("skbar-dark")
+            }
         }else{
+            console.log("light to dark")
             //document.getElementById("bongocat").setAttribute("fill","#ffffff");
             document.body.classList.add("bg-dark");
+            var arr = ["back-end","front-end","sre","devops"]
+            for(i in arr){
+                document.getElementById(arr[i]).classList.add("skbar-dark")
+            }
+            
         }
         ele.setAttribute("value",value);
     }
@@ -300,24 +311,24 @@
                 My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
             </div>
         </div>
-        <div class="techbars blur-transparent-effect boxed">
+        <div class="techbars boxed">
             <p>Backend</p>
-            <div class="skillbar">
+            <div class="skillbar" id="back-end">
             <div class="skills back-end"></div>
             </div>
 
             <p>Frontend</p>
-            <div class="skillbar">
+            <div class="skillbar" id="front-end">
             <div class="skills front-end"></div>
             </div>
 
             <p>Reliability</p>
-            <div class="skillbar">
+            <div class="skillbar" id="sre">
             <div class="skills sre"></div>
             </div>
 
             <p>DevOps</p>
-            <div class="skillbar">
+            <div class="skillbar" id="devops">
             <div class="skills devops"></div>
             </div>
             </div>
