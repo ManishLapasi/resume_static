@@ -295,6 +295,8 @@
             arr[1].classList.remove("darkNavItem")
             arr[3].classList.remove("darkNavItem")
             arr[5].classList.remove("darkNavItem")
+            var slider = document.getElementById("slider")
+            slider.classList.remove("slider-dark")
         }else{
             console.log("light to dark")
             //document.getElementById("bongocat").setAttribute("fill","#ffffff");
@@ -307,6 +309,8 @@
             arr[1].classList.add("darkNavItem")
             arr[3].classList.add("darkNavItem")
             arr[5].classList.add("darkNavItem")
+            var slider = document.getElementById("slider")
+            slider.classList.add("slider-dark")
         }
         ele.setAttribute("value",value);
     }
@@ -319,7 +323,7 @@
         <a class="navItem darkNavItem" href="#Experience">Experience</a>
         <a><label class="switch">
             <input id="toggler" type="checkbox" value="dark" onclick="toggleMode(this)">
-            <span class="slider round"></span>
+            <span class="slider round slider-dark" id="slider"></span>
         </label></a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
