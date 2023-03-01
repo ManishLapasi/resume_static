@@ -2,8 +2,8 @@
     --font-family: 'Open Sans', sans-serif;
     --font-family: 'Open Sans Light', sans-serif;
     --font-family: 'Open Sans Condensed', sans-serif;
-    --bg-url: url("../svgs/bg2.svg");
-    --bg-url-dark: url("../svgs/bg_dark.svg");
+    --bg-url: url("./svgs/bg2.svg");
+    --bg-url-dark: url("./svgs/bg_dark.svg");
     --text-color: #333;
     --switch-on-color: #444352;
     --switch-off-color: #ccc;
@@ -201,6 +201,10 @@ body {
     height: 2px;
     background-color: #000; /* Grey background */
 }
+
+.skbar-dark {
+    background-color: #f2f2f2;
+}
   
 .skills {
     padding-top: 2px; /* Add top padding */
@@ -284,7 +288,7 @@ body {
 }
 
 .areaName {
-    margin-top: 10vh;
+    margin-top: 20vh;
     width: 10vw;
 }
 
@@ -302,7 +306,7 @@ body {
     .areaName {
         width: 80vw;
         text-align: center;
-        margin-top: -5vh;
+        margin-top: -10vh;
     }
 
     .areaSVG {
