@@ -2,8 +2,8 @@
     --font-family: 'Open Sans', sans-serif;
     --font-family: 'Open Sans Light', sans-serif;
     --font-family: 'Open Sans Condensed', sans-serif;
-    --bg-url: url("./svgs/bg2.svg");
-    --bg-url-dark: url("./svgs/bg_dark.svg");
+    --bg-url: url("../svgs/bg2.svg");
+    --bg-url-dark: url("../svgs/bg_dark.svg");
     --text-color: #333;
     --switch-on-color: #444352;
     --switch-off-color: #ccc;
@@ -17,6 +17,9 @@ body {
     transition: background-image 0.5s ease-in;
     margin-left: 5vw;
     overflow: visible;
+    background-attachment: scroll;
+    background-position: top center;
+    transform-style: preserve-3d;
 }
 
 .bg-dark {
@@ -297,6 +300,7 @@ body {
 }
 
 .areaName {
+    font-family: "Open Sans Medium", sans-serif;
     margin-top: 20vh;
     width: 10vw;
 }
@@ -315,7 +319,7 @@ body {
     .areaName {
         width: 80vw;
         text-align: center;
-        margin-top: -10vh;
+        margin-top: 10vh;
     }
 
     .areaSVG {
@@ -328,9 +332,9 @@ body {
     }
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width:800px){
     .areaName {
-        margin-top: 0;
+        margin-top: 10vh;
     }
 }
 
@@ -411,4 +415,24 @@ input:checked + .slider:before {
 footer {
     position: fixed;
     min-width: 100%;
+}
+
+/* fade-in anim */
+
+@keyframes fade-bottom {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+.square-animation {
+    animation: fade-bottom 1.5s 1;
+}
+
+.square-deanimation {
+    visibility: hidden;
 }
