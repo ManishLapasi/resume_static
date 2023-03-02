@@ -15,7 +15,7 @@
     }
 
     var aText = new Array(
-    "Hi, I'm Manikandan Lapasi.", 
+    "Hi, I'm Manikandan Lapasi!", 
     "I write code."
     );
     var iSpeed = 50; // time delay of print out
@@ -73,11 +73,36 @@
             $$header.style.top = "-50px";
         }
         prevScrollpos = currScrollpos;
+        /*
+        var scrolltotop = document.scrollingElement.scrollTop;
+        var target = document.getElementById("main1");
+        var xvalue = "center";
+        var factor = 0.5;
+        var yvalue = scrolltotop * factor;
+        target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+        */
     }
 
     // When the user scrolls the page, execute myFunction
-    window.onscroll = function() {navresp()};
+    window.onscroll = function() {navresp(); reveal();};
 
+    function reveal() {
+        var reveals = document.querySelectorAll(".fade-ins");
+        console.log(reveals)
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("square-animation");
+                reveals[i].classList.remove("square-deanimation");
+            } else {
+                reveals[i].classList.remove("square-animation");
+                reveals[i].classList.add("square-deanimation");
+            }
+        }
+    }
+  
     var languages = [
         {id:"Python", value: 10},
         {id:"C++", value: 4},
@@ -348,11 +373,11 @@
         </div>
         <div id="bongocat_anim"></div>
     </div>
-    <div class="sumText boxed">
+    <div class="sumText boxed square fade-ins square-deanimation">
         I'm currently pursuing my Master's in CS at Georgia Tech, and I'm expecting to graduate by Spring 2024. I'm quite interested in SDE/DevOps/SRE roles - if you've got an opening on your team, I'd be happy to get in touch!
     </div>
     <h1 id="#Skills">Tech I've worked on</h1>
-    <div class="section2">
+    <div class="section2 square fade-ins square-deanimation">
         <div>
             <div class="techbox blur-transparent-effect boxed">
                 My background in soft-dev is equal parts academic and professional. I've taken courses on the mathematics behind software tech and on their applications. I've applied these learnings at my internships while upskilling myself with the current industry standards.   I'm a huge believer in automation - if there's a way to automate a menial task, I code away.
@@ -381,21 +406,21 @@
             </div>
         </div>
     <div class="section4">
-        <div class="areaName">
+        <div class="areaName square fade-ins square-deanimation">
             <p>Languages</p>
         </div>
         <div class="areaSVG" id="languages">
         </div>
     </div>
     <div class="section4">
-        <div class="areaName">
+        <div class="areaName square fade-ins square-deanimation">
             <p>Tools</p>
         </div>
         <div class="areaSVG" id="tools">
         </div>
     </div>
     <div class="section4">
-        <div class="areaName">
+        <div class="areaName square fade-ins square-deanimation">
             <p>Frameworks</p>
         </div>
         <div class="areaSVG" id="frameworks">
@@ -404,24 +429,23 @@
     </div>
     <div class="section3">
         <h1 id="Experience">Teams I've worked with</h1>
-        <div class="box blur-transparent-effect boxed">
+        <div class="box blur-transparent-effect boxed square fade-ins square-deanimation">
             <h2>Honeywell</h2>
             <h3>Site Reliability Engineer / Advanced SE</h3>
             <p>I was the SRE focal for an org-wide authentication and authorisation flow, which facilitated RBAC policies for multiple clients</p>
             <p>I implemented continuous monitoring and alerting for the IAM (Identity and authentication Management) service. I also worked on automating infrastructure provisioning and configuration on Microsoft Azure.</p>
         </div>
-        <div class="box blur-transparent-effect boxed">
+        <div class="box blur-transparent-effect boxed square fade-ins square-deanimation">
             <h2>GreyOrange Robotics</h2>
             <h3>Software Developer Intern</h3>
             <p>I was part of the Research and Development (R&D) team for GreyOrange's flagship robot - the Butler. I improved the time complexity of its path planning algorithm from linear to logarithmic time by implementing a binary heap based data structure for a grid map.</p>
             <p>I also implemented a real-time visualisation tool for the robot's path.</p>
         </div>
-        <div class="box blur-transparent-effect boxed">
+        <div class="box blur-transparent-effect boxed square fade-ins square-deanimation">
             <h2>SpaceX - Hyperloop</h2>
             <h3>Research / Competition</h3>
             <p>I led the propulsion subsystem department of Avishkar Hyperloop - India's (and Asia's only) student-run hyperloop pod competition finalists.</p>
             <p>I worked primarily on the kinematics and the dynamics of the pod, by deconstructing complex differential equations involving multiple propulsion components (electric motors, suspension systems, etc.).</p>
         </div>
     </div>
-    <footer></footer>
 </body>
