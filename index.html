@@ -105,9 +105,7 @@
         {id:"C++", value: 4},
         {id:"NodeJS", value: 8},
         {id:"Rust", value: 6},
-        {id:"Bash", value: 5},
         {id:"SQL", value: 8},
-        {id:"Erlang", value: 4}
     ];
     var tools = [
         {id:"Docker", value: 8},
@@ -115,17 +113,21 @@
         {id:"Kubernetes", value: 8},
         {id:"Grafana", value: 10},
         {id:"Ansible", value: 6},
-        {id:"Prometheus", value: 10},
-        {id:"Azure", value: 8}
+        {id:"Prometheus", value: 10}
     ];
     var frameWorks = [
         {id:"Tensorflow", value: 6},
         {id:"Flask", value: 8},
         {id:"ReactJS", value: 6},
         {id:"D3", value: 8},
-        {id:"MongoDB", value: 6},
         {id:"Neo4j", value: 8}
     ];
+    var cloudTech = [
+        {id: "Azure", value: 8},
+        {id: "AWS", value: 4},
+        {id: "GCP", value: 6},
+        {id: "Openshift", value: 6}
+    ]
 
     var maxlen = Math.max(languages.length, tools.length, frameWorks.length)
     console.log(maxlen);
@@ -283,6 +285,7 @@
         makeChart(languages, "languages", "svg1")
         makeChart(tools, "tools", "svg2")
         makeChart(frameWorks, "frameworks", "svg3")
+        makeChart(cloudTech, "cloudTech", "svg4")
     }
 
     function checkResize(prevsize){
@@ -421,6 +424,13 @@
             <p>Frameworks</p>
         </div>
         <div class="areaSVG" id="frameworks">
+        </div>
+    </div>
+    <div class="section4">
+        <div class="areaName square fade-ins square-deanimation">
+            <p>Cloud Tech</p>
+        </div>
+        <div class="areaSVG" id="cloudTech">
         </div>
     </div>
     </div>
