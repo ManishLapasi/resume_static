@@ -292,12 +292,14 @@ body {
 }
 
 .app-img {
-    width: 50vw;
+    width: 40vw;
     margin-left: 5vw;
+    margin-top: 5vh;
 }
 
 .app-img img {
-    height: 100%;
+    min-width: 100%;
+    min-height: 80%;
 }
 
 @media screen and (max-width:800px){
