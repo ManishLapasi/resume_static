@@ -462,7 +462,7 @@
             <div class="app-desc">
             <h2><a href="https://manishlapasi.github.io/react-spotify/" target="_blank">Music Recommendation App</a><i class="fa fa-external-link" aria-hidden="true"></i></h2>
             <p>I built a music recommendation app that returns suggestions based on audio features as well as social relationships i.e. likeliness based on playlist aggregations.</p>
-            <p>The data was collected from <a href="https://dl.acm.org/doi/abs/10.1145/3240323.3240342">this paper</a>, and the backend is built on a clustering algorithm.</p>
+            <p>The raw data was collected from <a href="https://dl.acm.org/doi/abs/10.1145/3240323.3240342">this paper</a>, which provides a list of playlists and the names/ids of songs in them. I collected the data around each track's audio features by writing a script to query Spotify's APIs. Currently, the data collected amounts to 280k unique songs spread over 21k playlists. I then ran a clustering algorithm on these audio features to cluster the songs.</p>
             <p>I initially built this app on Python, and later switched over to Rust for performance improvements - this reduced the compute time from over a minute to less than a second.</p> <p>The front-end is written in ReactJS and the website is currently served via AWS lambda functions invoked through the AWS ApiGateway. The database is hosted on AWS RDS, and the website is hosted on github.</p>
             </div>
             <div class="app-img">
