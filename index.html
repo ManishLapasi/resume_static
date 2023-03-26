@@ -321,6 +321,7 @@
             arr[1].classList.remove("darkNavItem")
             arr[3].classList.remove("darkNavItem")
             arr[5].classList.remove("darkNavItem")
+            arr[7].classList.remove("darkNavItem")
             var slider = document.getElementById("slider")
             slider.classList.remove("slider-dark")
         }else{
@@ -336,6 +337,7 @@
             arr[1].classList.add("darkNavItem")
             arr[3].classList.add("darkNavItem")
             arr[5].classList.add("darkNavItem")
+            arr[7].classList.add("darkNavItem")
             var slider = document.getElementById("slider")
             slider.classList.add("slider-dark")
         }
@@ -348,6 +350,7 @@
         <a class="navItem darkNavItem" href="#">About</a>
         <a class="navItem darkNavItem" href="#Skills" onclick="getExp();">Skills</a>
         <a class="navItem darkNavItem" href="#Experience">Experience</a>
+        <a class="navItem darkNavItem" href="#Showcase">Showcase</a>
         <a><label class="switch">
             <input id="toggler" type="checkbox" value="dark" onclick="toggleMode(this)">
             <span class="slider round slider-dark" id="slider"></span>
@@ -451,15 +454,20 @@
         <div class="box blur-transparent-effect boxed square fade-ins square-deanimation">
             <h2>SpaceX - Hyperloop</h2>
             <h3>Research / Competition</h3>
-            <p>I built a music recommendation app that returns suggestions based on audio features as well as social relationships i.e. likeliness based on playlist aggregations.</p>
-            <p>I initially built this app on Python, and later switched over to Rust for performance improvements - this helped reduce the compute time from over a minute to less than a second. The website is currently hosted on AWS lambda and is connected to a AWS RDS backend.</p>
-            <p>Here's a link to the app, and here's a link to an article I wrote about it!</p>
+            <p>I led the propulsion subsystem department of Avishkar Hyperloop - India's (and Asia's only) student-run hyperloop pod competition finalists.</p>
+            <p>I worked primarily on the kinematics and the dynamics of the pod, by deconstructing complex differential equations involving multiple propulsion components (electric motors, suspension systems, etc.).</p>
         </div>
-        <h1 id="Projects">Personal projects I've worked on</h1>
-        <div class="box blur-transparent-effect boxed square fade-ins square-deanimation">
-            <h2>Music Recommendation App</h2>
-            <p>I was the SRE focal for an org-wide authentication and authorisation flow, which facilitated RBAC policies for multiple clients</p>
-            <p>I implemented continuous monitoring and alerting for the IAM (Identity and authentication Management) service. I also worked on automating infrastructure provisioning and configuration on Microsoft Azure.</p>
+        <h1 id="Showcase">Showcase</h1>
+        <div class="box2 blur-transparent-effect boxed square fade-ins square-deanimation">
+            <div class="app-desc">
+            <h2><a href="https://manishlapasi.github.io/react-spotify/" target="_blank">Music Recommendation App</a><i class="fa fa-external-link" aria-hidden="true"></i></h2>
+            <p>I built a music recommendation app that returns suggestions based on audio features as well as social relationships i.e. likeliness based on playlist aggregations.</p>
+            <p>The data was collected from <a href="https://dl.acm.org/doi/abs/10.1145/3240323.3240342">this paper</a>, and the backend is built on a clustering algorithm.</p>
+            <p>I initially built this app on Python, and later switched over to Rust for performance improvements - this reduced the compute time from over a minute to less than a second.</p> <p>The front-end is written in ReactJS and the website is currently served via AWS lambda functions invoked through the AWS ApiGateway. The database is hosted on AWS RDS, and the website is hosted on github.</p>
+            </div>
+            <div class="app-img">
+                <img src="../svgs/snip1.png">
+            </div>
         </div>
     </div>
 </body>
